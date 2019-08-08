@@ -42,6 +42,7 @@
 //}
 
 #import "Mnemonic.h"
+#import "sha256.h"
 
 static NSArray * mnemonicWords = nil;
 
@@ -61,6 +62,39 @@ static NSArray * mnemonicWords = nil;
 
 - (NSString *)generated {
     
+    //1.生成 32位 随机数
+    UInt8 empty[32] = {};
+    printf("初始化数组");
+    for (int i = 0; i < 32; i ++) {
+        empty[i] = arc4random() % 257;;//随机填充一个数字
+    }
+    
+    [self printDes:&empty withLen:32];
+    
+    UInt8 back[32] = {};
+    sha256(&empty, 32, &back);
+    printf("sha256处理");
+    [self printDes:&back withLen:32];    
+    
+    return @"";
+}
+
+- (void)printDes:(UInt8 *)array withLen:(int)len {
+    UInt8 * itr = array;
+    int index = 0;
+    printf("\n");
+    while (true) {
+        if ( index % 8 == 0) {
+            printf("\n");
+        }
+        index ++;
+        if (index > len) {
+            break;
+        }
+        printf("%4x",*itr);
+        itr ++;
+    }
+    printf("\n");
 }
 
 + (void)loadWords {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2669C34F22FC707E00015732 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669C34E22FC707E00015732 /* main.m */; };
 		2669C35E22FC72C000015732 /* Mnemonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669C35D22FC72C000015732 /* Mnemonic.m */; };
+		2669C36222FC785500015732 /* sha256.c in Sources */ = {isa = PBXBuildFile; fileRef = 2669C36122FC785500015732 /* sha256.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		2669C34E22FC707E00015732 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2669C35C22FC72C000015732 /* Mnemonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mnemonic.h; sourceTree = "<group>"; };
 		2669C35D22FC72C000015732 /* Mnemonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mnemonic.m; sourceTree = "<group>"; };
+		2669C36022FC785500015732 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha256.h; sourceTree = "<group>"; };
+		2669C36122FC785500015732 /* sha256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha256.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,7 @@
 		2669C34D22FC707E00015732 /* LibraUnWraps */ = {
 			isa = PBXGroup;
 			children = (
+				2669C35F22FC785500015732 /* code */,
 				2669C35522FC70B000015732 /* mnemonic */,
 				2669C34E22FC707E00015732 /* main.m */,
 			);
@@ -73,6 +77,15 @@
 				2669C35D22FC72C000015732 /* Mnemonic.m */,
 			);
 			path = mnemonic;
+			sourceTree = "<group>";
+		};
+		2669C35F22FC785500015732 /* code */ = {
+			isa = PBXGroup;
+			children = (
+				2669C36022FC785500015732 /* sha256.h */,
+				2669C36122FC785500015732 /* sha256.c */,
+			);
+			path = code;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2669C34F22FC707E00015732 /* main.m in Sources */,
+				2669C36222FC785500015732 /* sha256.c in Sources */,
 				2669C35E22FC72C000015732 /* Mnemonic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
