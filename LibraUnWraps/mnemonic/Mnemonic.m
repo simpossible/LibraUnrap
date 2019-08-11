@@ -61,37 +61,82 @@ static NSArray * mnemonicWords = nil;
 }
 
 - (NSString *)generated {
-    
+    const int datalen = 32;
     //1.生成 32位 随机数
-    UInt8 empty[32] = {};
-    printf("初始化数组");
-    for (int i = 0; i < 32; i ++) {
+    UInt8 *empty = malloc(datalen);
+    for (int i = 0; i < datalen; i ++) {
         empty[i] = arc4random() % 257;;//随机填充一个数字
     }
+
+    //根据32位的随机数生成256bit的haxi值
+    UInt8 *back = malloc(datalen);
+    sha256(&empty, datalen, back);
     
-    [self printDes:&empty withLen:32];
+    int bitlen = datalen * 8 + datalen/4;;
+    UInt8 *bits = malloc(bitlen);
+    memset(bits, 0, bitlen);
     
-    UInt8 back[32] = {};
-    sha256(&empty, 32, &back);
-    printf("sha256处理");
-    [self printDes:&back withLen:32];    
+    //将生成的每一个haxi值 通过左移 1-8 得到 8 个 值
+    for ( int i = 0 ; i < datalen ; i ++ ){
+        for ( int j = 0 ; j < 8 ; j ++ ) {
+            bits[i * 8 + j] = (empty[i] & (1 << (7 - j))) > 0;
+        }
+    }
     
-    return @"";
+    //填充最后新增的那个值
+    for (int i  = 0;i <datalen/4;i++){
+        bits[8 * datalen + i] = (back[i / 8] & (1 << (7 - (i % 8)))) > 0;
+    }
+    
+    free(empty);
+    free(back);
+
+    //将 8 * 32 + 8  =  8 * 33 =  24 * 11  每 24位重新使用位运算组合位1位 就能得到11位下标
+    
+    int mlen = datalen * 3 / 4;
+    NSMutableString *result = [[NSMutableString alloc] init];
+    for (int i = 0; i < mlen; i++) {
+        int idx = 0;
+        for (int j =0; j < 11; j++) {
+            if (bits[i * 11 + j]) {
+                idx +=  1 << (10 -j);
+            }        }
+        NSString *words = mnemonicWords[idx];
+        [result appendString:words];
+        [result appendString:@" "];
+    }
+    
+       free(bits);
+    
+
+    
+//    let mut memo = Vec::new();
+    //    for i in 0..mlen {
+    //        let mut idx = 0;
+    //        for j in 0..11 {
+    //            if bits[i * 11 + j] {
+    //                idx += 1 << (10 - j);
+    //            }
+    //        }
+    //        memo.push(WORDS[idx]);
+    //    }
+
+    return result;
 }
 
-- (void)printDes:(UInt8 *)array withLen:(int)len {
+- (void)printDes:(UInt8 *)array withLen:(int)len withRow:(int)row {
     UInt8 * itr = array;
     int index = 0;
     printf("\n");
     while (true) {
-        if ( index % 8 == 0) {
+        if ( index % row == 0) {
             printf("\n");
         }
         index ++;
         if (index > len) {
             break;
         }
-        printf("%4x",*itr);
+        printf("%4d",*itr);
         itr ++;
     }
     printf("\n");

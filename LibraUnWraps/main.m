@@ -12,7 +12,8 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         Mnemonic *me = [[Mnemonic alloc] init];
-        [me generated];
+        NSString*  mm = [me generated];
+        NSLog(@"the Mnemonic is %@",mm);;
     }
     return 0;
 }
