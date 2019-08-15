@@ -8,17 +8,17 @@
 
 #import "KeyFactory.h"
 
-static char libraSulat[] = "LIBRA WALLET: derived key$";
+
 
 @implementation KeyFactory
 
 - (void)gen {
-    int len = sizeof(libraSulat);
+    int len = sizeof(libraInfoProfix);
     uint8 *finnalByte = malloc(len + 8 -1);
     memset(finnalByte, 0, len + 8 - 1);
     [self printDes:finnalByte withLen:len +8 -1 withRow:8];
     
-    uint8 * start = (uint8 *)&libraSulat;
+    uint8 * start = (uint8 *)&libraInfoProfix;
     memcpy(finnalByte, start, len +8 -1);
     [self printDes:finnalByte withLen:len +8 -1 withRow:len +8 -1];
 }

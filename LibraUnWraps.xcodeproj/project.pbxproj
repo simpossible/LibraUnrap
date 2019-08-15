@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		263476C523045D3900AB4A5F /* KeyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 263476C423045D3900AB4A5F /* KeyFactory.m */; };
+		263477DE2305B3DE00AB4A5F /* IBLSeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477DD2305B3DE00AB4A5F /* IBLSeed.m */; };
+		263477E22305B3EB00AB4A5F /* KeyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477E12305B3EB00AB4A5F /* KeyFactory.m */; };
 		2669C34F22FC707E00015732 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669C34E22FC707E00015732 /* main.m */; };
 		2669C35E22FC72C000015732 /* Mnemonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669C35D22FC72C000015732 /* Mnemonic.m */; };
 		2669C36222FC785500015732 /* sha256.c in Sources */ = {isa = PBXBuildFile; fileRef = 2669C36122FC785500015732 /* sha256.c */; };
@@ -26,8 +27,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		263476C323045D3900AB4A5F /* KeyFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyFactory.h; sourceTree = "<group>"; };
-		263476C423045D3900AB4A5F /* KeyFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyFactory.m; sourceTree = "<group>"; };
+		263477DC2305B3DE00AB4A5F /* IBLSeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBLSeed.h; sourceTree = "<group>"; };
+		263477DD2305B3DE00AB4A5F /* IBLSeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBLSeed.m; sourceTree = "<group>"; };
+		263477E02305B3EB00AB4A5F /* KeyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFactory.h; sourceTree = "<group>"; };
+		263477E12305B3EB00AB4A5F /* KeyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFactory.m; sourceTree = "<group>"; };
 		2669C34B22FC707E00015732 /* LibraUnWraps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LibraUnWraps; sourceTree = BUILT_PRODUCTS_DIR; };
 		2669C34E22FC707E00015732 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2669C35C22FC72C000015732 /* Mnemonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mnemonic.h; sourceTree = "<group>"; };
@@ -47,11 +50,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		263476C223045D2E00AB4A5F /* keys */ = {
+		263477DB2305B3DE00AB4A5F /* seeds */ = {
 			isa = PBXGroup;
 			children = (
-				263476C323045D3900AB4A5F /* KeyFactory.h */,
-				263476C423045D3900AB4A5F /* KeyFactory.m */,
+				263477DC2305B3DE00AB4A5F /* IBLSeed.h */,
+				263477DD2305B3DE00AB4A5F /* IBLSeed.m */,
+			);
+			path = seeds;
+			sourceTree = "<group>";
+		};
+		263477DF2305B3EB00AB4A5F /* keys */ = {
+			isa = PBXGroup;
+			children = (
+				263477E02305B3EB00AB4A5F /* KeyFactory.h */,
+				263477E12305B3EB00AB4A5F /* KeyFactory.m */,
 			);
 			path = keys;
 			sourceTree = "<group>";
@@ -77,7 +89,8 @@
 			children = (
 				2669C35F22FC785500015732 /* code */,
 				2669C35522FC70B000015732 /* mnemonic */,
-				263476C223045D2E00AB4A5F /* keys */,
+				263477DF2305B3EB00AB4A5F /* keys */,
+				263477DB2305B3DE00AB4A5F /* seeds */,
 				2669C34E22FC707E00015732 /* main.m */,
 			);
 			path = LibraUnWraps;
@@ -157,8 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				263476C523045D3900AB4A5F /* KeyFactory.m in Sources */,
+				263477E22305B3EB00AB4A5F /* KeyFactory.m in Sources */,
 				2669C34F22FC707E00015732 /* main.m in Sources */,
+				263477DE2305B3DE00AB4A5F /* IBLSeed.m in Sources */,
 				2669C36222FC785500015732 /* sha256.c in Sources */,
 				2669C35E22FC72C000015732 /* Mnemonic.m in Sources */,
 			);
