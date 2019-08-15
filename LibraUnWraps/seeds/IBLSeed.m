@@ -9,6 +9,7 @@
 #import "IBLSeed.h"
 #import "Mnemonic.h"
 #import "KeyFactory.h"
+#import "HKDFKit.h"
 
 @interface IBLSeed()
 
@@ -33,6 +34,9 @@
     int size = sizeof(libraMasterSalt);//字符串末尾/o
     uint8 * salt = malloc(size -1);
     memcpy(salt, &libraMasterSalt, size);
+    
+    
+    
     [self printDes:salt withLen:size withRow:size];
     free(salt);
 }
