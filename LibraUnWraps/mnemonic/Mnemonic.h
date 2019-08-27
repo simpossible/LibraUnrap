@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)generated;
 
+- (NSString *)mnemonicWord;
+
 @end
 
 NS_ASSUME_NONNULL_END

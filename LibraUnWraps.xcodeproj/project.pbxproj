@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260F7C3F23158B6E00B88C23 /* PBKDF2Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 260F7C3823158B6E00B88C23 /* PBKDF2Configuration.m */; };
+		260F7C4023158B6E00B88C23 /* PBKDF2Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 260F7C3A23158B6E00B88C23 /* PBKDF2Defaults.m */; };
+		260F7C4123158B6E00B88C23 /* PBKDF2Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 260F7C3B23158B6E00B88C23 /* PBKDF2Result.m */; };
 		263477DE2305B3DE00AB4A5F /* IBLSeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477DD2305B3DE00AB4A5F /* IBLSeed.m */; };
 		263477E22305B3EB00AB4A5F /* KeyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477E12305B3EB00AB4A5F /* KeyFactory.m */; };
 		263477E62305B51C00AB4A5F /* HKDFKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477E42305B51C00AB4A5F /* HKDFKit.m */; };
@@ -28,6 +31,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		260F7C3823158B6E00B88C23 /* PBKDF2Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2Configuration.m; sourceTree = "<group>"; };
+		260F7C3923158B6E00B88C23 /* PBKDF2Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKDF2Result.h; sourceTree = "<group>"; };
+		260F7C3A23158B6E00B88C23 /* PBKDF2Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2Defaults.m; sourceTree = "<group>"; };
+		260F7C3B23158B6E00B88C23 /* PBKDF2Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2Result.m; sourceTree = "<group>"; };
+		260F7C3C23158B6E00B88C23 /* PBKDF2Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKDF2Configuration.h; sourceTree = "<group>"; };
+		260F7C3D23158B6E00B88C23 /* PBKDF2Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBKDF2Defaults.h; sourceTree = "<group>"; };
+		260F7C3E23158B6E00B88C23 /* PBKDF2-Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBKDF2-Wrapper.h"; sourceTree = "<group>"; };
 		263477DC2305B3DE00AB4A5F /* IBLSeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBLSeed.h; sourceTree = "<group>"; };
 		263477DD2305B3DE00AB4A5F /* IBLSeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBLSeed.m; sourceTree = "<group>"; };
 		263477E02305B3EB00AB4A5F /* KeyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFactory.h; sourceTree = "<group>"; };
@@ -53,6 +63,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260F7C3723158B6E00B88C23 /* PKDF2 */ = {
+			isa = PBXGroup;
+			children = (
+				260F7C3823158B6E00B88C23 /* PBKDF2Configuration.m */,
+				260F7C3923158B6E00B88C23 /* PBKDF2Result.h */,
+				260F7C3A23158B6E00B88C23 /* PBKDF2Defaults.m */,
+				260F7C3B23158B6E00B88C23 /* PBKDF2Result.m */,
+				260F7C3C23158B6E00B88C23 /* PBKDF2Configuration.h */,
+				260F7C3D23158B6E00B88C23 /* PBKDF2Defaults.h */,
+				260F7C3E23158B6E00B88C23 /* PBKDF2-Wrapper.h */,
+			);
+			name = PKDF2;
+			path = code/PKDF2;
+			sourceTree = "<group>";
+		};
 		263477DB2305B3DE00AB4A5F /* seeds */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +125,7 @@
 		2669C34D22FC707E00015732 /* LibraUnWraps */ = {
 			isa = PBXGroup;
 			children = (
+				260F7C3723158B6E00B88C23 /* PKDF2 */,
 				2669C35F22FC785500015732 /* code */,
 				2669C35522FC70B000015732 /* mnemonic */,
 				263477DF2305B3EB00AB4A5F /* keys */,
@@ -185,8 +211,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				263477E22305B3EB00AB4A5F /* KeyFactory.m in Sources */,
+				260F7C3F23158B6E00B88C23 /* PBKDF2Configuration.m in Sources */,
 				2669C34F22FC707E00015732 /* main.m in Sources */,
 				263477DE2305B3DE00AB4A5F /* IBLSeed.m in Sources */,
+				260F7C4123158B6E00B88C23 /* PBKDF2Result.m in Sources */,
+				260F7C4023158B6E00B88C23 /* PBKDF2Defaults.m in Sources */,
 				263477E62305B51C00AB4A5F /* HKDFKit.m in Sources */,
 				2669C36222FC785500015732 /* sha256.c in Sources */,
 				2669C35E22FC72C000015732 /* Mnemonic.m in Sources */,

@@ -15,5 +15,7 @@
 
 - (instancetype)initWithMnemonic:(Mnemonic *)mnemonic andSalt:(NSString *)salt;
 
+- (void)extract;
+
 @end
 

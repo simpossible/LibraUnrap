@@ -10,6 +10,8 @@
 #import "Mnemonic.h"
 #import "KeyFactory.h"
 #import "HKDFKit.h"
+#import "PBKDF2Configuration.h"
+#import "PBKDF2Result.h"
 
 @interface IBLSeed()
 
@@ -32,13 +34,43 @@
 
 - (void)extract {
     int size = sizeof(libraMasterSalt);//字符串末尾/o
-    uint8 * salt = malloc(size -1);
-    memcpy(salt, &libraMasterSalt, size);
     
+    NSData * saltData = [NSData dataWithBytesNoCopy:libraMasterSalt length:size -1];
     
+    NSString *mnemonicWord = [self.mnemonic mnemonicWord];
+//    NSData * mnemonicData = [NSData dataWithBytesNoCopy:[mnemonicWord UTF8String] length:mnemonicWord.length];
     
-    [self printDes:salt withLen:size withRow:size];
-    free(salt);
+//    NSData *extractData = [HKDFKit extract:mnemonicData salt:saltData];
+//    NSData *extractData2 = [HKDFKit extract:mnemonicData salt:saltData];
+    
+    PBKDF2Configuration *config = [[PBKDF2Configuration alloc] initWithSalt:saltData
+                             derivedKeyLength:32
+                                       rounds:2048
+                         pseudoRandomFunction:PBKDF2PseudoRandomFunctionSHA256];
+    PBKDF2Result *result = [[PBKDF2Result alloc] initWithPassword:mnemonicWord configuration:config];
+    NSData *masterKey = result.derivedKey;
+    
+    NSData * infoData = [self infoData];
+    
+   NSData *primarikey = [HKDFKit expand:masterKey info:infoData outputSize:32 offset:0];;
+    
+    NSString *str = [[NSString alloc] initWithData:primarikey encoding:0];
+    
+    NSLog(@"str is %@",str);
+    
+//    return extractData;
+}
+
+- (NSData *)infoData {
+    int len = sizeof(libraInfoProfix);
+    int realLen = len + 8 -1;
+    uint8 *finnalByte = malloc(realLen);
+    memset(finnalByte, 0, realLen);
+    finnalByte[len-1] = 1;
+    uint8 * start = (uint8 *)&libraInfoProfix;
+    memcpy(finnalByte, start, len - 1);
+    
+    return [NSData dataWithBytesNoCopy:finnalByte length:realLen];
 }
 
 - (void)printDes:(UInt8 *)array withLen:(int)len withRow:(int)row {

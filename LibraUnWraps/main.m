@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
         NSLog(@"the Mnemonic is %@",mm);
         
         IBLSeed *sed = [[IBLSeed alloc] initWithMnemonic:me andSalt:LibraSalt];
-        
+        [sed extract];
         KeyFactory *keyfact = [[KeyFactory alloc] init];
         [keyfact gen];
     }

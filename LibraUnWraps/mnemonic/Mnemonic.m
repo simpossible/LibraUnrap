@@ -46,6 +46,12 @@
 
 static NSArray * mnemonicWords = nil;
 
+@interface Mnemonic()
+
+@property (nonatomic, copy) NSString * mnemonicWord;
+
+@end
+
 @implementation Mnemonic
 
 + (void)load {
@@ -56,11 +62,13 @@ static NSArray * mnemonicWords = nil;
 -(instancetype)init {
     if (self = [super init]) {
         
+      
     }
     return self;
 }
 
 - (NSString *)generated {
+    
     const int datalen = 32;
     //1.生成 32位 随机数
     UInt8 *empty = malloc(datalen);
@@ -122,6 +130,13 @@ static NSArray * mnemonicWords = nil;
     //    }
 
     return result;
+}
+
+- (NSString *)mnemonicWord {
+    if (_mnemonicWord.length == 0) {
+        _mnemonicWord = [self generated];
+    }
+    return _mnemonicWord;
 }
 
 + (void)loadWords {
