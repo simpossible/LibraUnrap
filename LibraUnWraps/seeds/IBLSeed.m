@@ -43,16 +43,21 @@
 //    NSData *extractData = [HKDFKit extract:mnemonicData salt:saltData];
 //    NSData *extractData2 = [HKDFKit extract:mnemonicData salt:saltData];
     
-    PBKDF2Configuration *config = [[PBKDF2Configuration alloc] initWithSalt:saltData
+  PBKDF2Configuration *config = [[PBKDF2Configuration alloc] initWithSalt:saltData
                              derivedKeyLength:32
                                        rounds:2048
                          pseudoRandomFunction:PBKDF2PseudoRandomFunctionSHA256];
-    PBKDF2Result *result = [[PBKDF2Result alloc] initWithPassword:mnemonicWord configuration:config];
-    NSData *masterKey = result.derivedKey;
+  PBKDF2Result *result = [[PBKDF2Result alloc] initWithPassword:mnemonicWord configuration:config];
+  NSData *masterKey = result.derivedKey;
     
-    NSData * infoData = [self infoData];
+   NSData * infoData = [self infoDataAtIndex:0];
     
-   NSData *primarikey = [HKDFKit expand:masterKey info:infoData outputSize:32 offset:0];;
+   NSData *primarikey = [HKDFKit expand:masterKey info:infoData outputSize:32 offset:0];
+    uint8 *a = primarikey.bytes;
+    for (int i = 0; i < 32; i ++) {
+        printf("[%u] ",*a);
+        a++;
+    }
     
     NSString *str = [[NSString alloc] initWithData:primarikey encoding:0];
     
@@ -61,12 +66,12 @@
 //    return extractData;
 }
 
-- (NSData *)infoData {
+- (NSData *)infoDataAtIndex:(NSInteger)index {
     int len = sizeof(libraInfoProfix);
     int realLen = len + 8 -1;
     uint8 *finnalByte = malloc(realLen);
     memset(finnalByte, 0, realLen);
-    finnalByte[len-1] = 1;
+    finnalByte[len-1] = index;
     uint8 * start = (uint8 *)&libraInfoProfix;
     memcpy(finnalByte, start, len - 1);
     

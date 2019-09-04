@@ -101,6 +101,7 @@ static NSArray * mnemonicWords = nil;
 
     //将 8 * 32 + 8  =  8 * 33 =  24 * 11  每 24位重新使用位运算组合位1位 就能得到11位下标
     
+    NSArray * debugArray = @[@"swift", @"shop", @"visa", @"arena", @"canal", @"dial", @"indoor", @"paper", @"noise", @"rebel", @"spider", @"good", @"write", @"worry", @"kitchen", @"rely", @"weather", @"onion", @"hobby", @"feed", @"fiber", @"layer", @"emotion", @"spy"];
     int mlen = datalen * 3 / 4;
     NSMutableString *result = [[NSMutableString alloc] init];
     for (int i = 0; i < mlen; i++) {
@@ -109,9 +110,12 @@ static NSArray * mnemonicWords = nil;
             if (bits[i * 11 + j]) {
                 idx +=  1 << (10 -j);
             }        }
-        NSString *words = mnemonicWords[idx];
+//        NSString *words = mnemonicWords[idx];
+        NSString *words = debugArray[i];
         [result appendString:words];
-        [result appendString:@" "];
+        if (i != mlen -1) {
+            [result appendString:@" "];
+        }
     }
     
        free(bits);
