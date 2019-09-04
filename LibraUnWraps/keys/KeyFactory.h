@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static char libraSaltPrefix[] = "LIBRA WALLET: derived key$";
-static char libraMasterSalt[] = "LIBRA WALLET: derived key$";
+static char libraSaltPrefix[] = "LIBRA WALLET: mnemonic salt prefix$";
+static char libraMasterSalt[] = "LIBRA WALLET: master key salt$";
 static char libraInfoProfix[] = "LIBRA WALLET: derived key$";
 
 

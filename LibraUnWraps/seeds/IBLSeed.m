@@ -33,9 +33,22 @@
 }
 
 - (void)extract {
-    int size = sizeof(libraMasterSalt);//字符串末尾/o
+    char salt[] = "LIBRA";
     
-    NSData * saltData = [NSData dataWithBytesNoCopy:libraMasterSalt length:size -1];
+    int presize = sizeof(libraSaltPrefix);//字符串末尾/o
+//    NSData * prefixData = [NSData dataWithBytesNoCopy:libraSaltPrefix length:presize -1];
+    
+    int saltsize = sizeof(salt);
+    int realLength = presize + saltsize - 2;
+    uint8 *a = malloc(realLength);
+    memset(a, 0, realLength);
+    memcpy(a, libraSaltPrefix, presize-1);
+    uint8 * temp = a + presize -1;
+    memcpy(temp, salt, saltsize-1);
+    NSData *saltData = [NSData dataWithBytesNoCopy:a length:realLength];
+    
+
+    [self printData:saltData useC:YES];
     
     NSString *mnemonicWord = [self.mnemonic mnemonicWord];
 //    NSData * mnemonicData = [NSData dataWithBytesNoCopy:[mnemonicWord UTF8String] length:mnemonicWord.length];
@@ -53,17 +66,26 @@
    NSData * infoData = [self infoDataAtIndex:0];
     
    NSData *primarikey = [HKDFKit expand:masterKey info:infoData outputSize:32 offset:0];
-    uint8 *a = primarikey.bytes;
-    for (int i = 0; i < 32; i ++) {
-        printf("[%u] ",*a);
-        a++;
-    }
-    
+ [self printData:primarikey useC:NO];
     NSString *str = [[NSString alloc] initWithData:primarikey encoding:0];
     
     NSLog(@"str is %@",str);
     
 //    return extractData;
+}
+
+- (void)printData:(NSData *)data useC:(BOOL)c {
+    uint8 *a = data.bytes;
+    for (int i = 0; i < data.length; i ++) {
+        if (c) {
+            printf("[%c] ",*a);
+        }else {
+            printf("[%u] ",*a);
+        }
+        
+        a++;
+    }
+    
 }
 
 - (NSData *)infoDataAtIndex:(NSInteger)index {
@@ -74,6 +96,8 @@
     finnalByte[len-1] = index;
     uint8 * start = (uint8 *)&libraInfoProfix;
     memcpy(finnalByte, start, len - 1);
+    
+    [self printDes:finnalByte withLen:realLen withRow:9];
     
     return [NSData dataWithBytesNoCopy:finnalByte length:realLen];
 }
@@ -90,7 +114,7 @@
         if (index > len) {
             break;
         }
-        printf("%c",*itr);
+        printf("_%c_",*itr);
         itr ++;
     }
     printf("\n");
