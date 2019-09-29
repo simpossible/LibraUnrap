@@ -36,7 +36,7 @@
 }
 
 - (NSData *)extract {
-    char *salt = "libra";
+    char *salt = "LIBRA";
     //固定助记词 方便对照调试
     char * mne = "legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth useful legal will";
     uint32 length = 0;
