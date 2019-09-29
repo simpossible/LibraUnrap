@@ -39,11 +39,10 @@
     char *salt = "libra";
     //固定助记词 方便对照调试
     char * mne = "legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth useful legal will";
-    struct RustBuffer *rb =  seed_from_m_s(mne, salt);
-    [self printDes:rb->data withLen:rb->len withRow:8];
-    NSData *data = [NSData dataWithBytes:rb->data length:rb->len];
+    uint32 length = 0;
+    uint8 *seed_data =  seed_from_m_s(mne, salt,&length);
+    NSData *data = [NSData dataWithBytes:seed_data length:length];
     self.seedData = data;
-    [self printData:data useC:false];
     return data;
 //    return extractData;
 }
