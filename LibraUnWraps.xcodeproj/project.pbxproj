@@ -12,10 +12,10 @@
 		260F7C4123158B6E00B88C23 /* PBKDF2Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 260F7C3B23158B6E00B88C23 /* PBKDF2Result.m */; };
 		263477DE2305B3DE00AB4A5F /* IBLSeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477DD2305B3DE00AB4A5F /* IBLSeed.m */; };
 		263477E22305B3EB00AB4A5F /* KeyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477E12305B3EB00AB4A5F /* KeyFactory.m */; };
-		263477E62305B51C00AB4A5F /* HKDFKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 263477E42305B51C00AB4A5F /* HKDFKit.m */; };
 		2669C34F22FC707E00015732 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669C34E22FC707E00015732 /* main.m */; };
 		2669C35E22FC72C000015732 /* Mnemonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669C35D22FC72C000015732 /* Mnemonic.m */; };
 		2669C36222FC785500015732 /* sha256.c in Sources */ = {isa = PBXBuildFile; fileRef = 2669C36122FC785500015732 /* sha256.c */; };
+		A4086D682340DE2500E1A0CE /* libapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4086D662340DE2500E1A0CE /* libapp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,14 +42,14 @@
 		263477DD2305B3DE00AB4A5F /* IBLSeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBLSeed.m; sourceTree = "<group>"; };
 		263477E02305B3EB00AB4A5F /* KeyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyFactory.h; sourceTree = "<group>"; };
 		263477E12305B3EB00AB4A5F /* KeyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyFactory.m; sourceTree = "<group>"; };
-		263477E42305B51C00AB4A5F /* HKDFKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKDFKit.m; sourceTree = "<group>"; };
-		263477E52305B51C00AB4A5F /* HKDFKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKDFKit.h; sourceTree = "<group>"; };
 		2669C34B22FC707E00015732 /* LibraUnWraps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LibraUnWraps; sourceTree = BUILT_PRODUCTS_DIR; };
 		2669C34E22FC707E00015732 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2669C35C22FC72C000015732 /* Mnemonic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mnemonic.h; sourceTree = "<group>"; };
 		2669C35D22FC72C000015732 /* Mnemonic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mnemonic.m; sourceTree = "<group>"; };
 		2669C36022FC785500015732 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha256.h; sourceTree = "<group>"; };
 		2669C36122FC785500015732 /* sha256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha256.c; sourceTree = "<group>"; };
+		A4086D662340DE2500E1A0CE /* libapp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libapp.a; sourceTree = "<group>"; };
+		A4086D672340DE2500E1A0CE /* libHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4086D682340DE2500E1A0CE /* libapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,16 +97,6 @@
 			path = keys;
 			sourceTree = "<group>";
 		};
-		263477E32305B51C00AB4A5F /* HKDFKit */ = {
-			isa = PBXGroup;
-			children = (
-				263477E42305B51C00AB4A5F /* HKDFKit.m */,
-				263477E52305B51C00AB4A5F /* HKDFKit.h */,
-			);
-			name = HKDFKit;
-			path = "../../../../../../Downloads/HKDFKit-master/HKDFKit/HKDFKit";
-			sourceTree = "<group>";
-		};
 		2669C34222FC707E00015732 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +116,7 @@
 		2669C34D22FC707E00015732 /* LibraUnWraps */ = {
 			isa = PBXGroup;
 			children = (
+				A4086D652340DE2500E1A0CE /* rustlib */,
 				260F7C3723158B6E00B88C23 /* PKDF2 */,
 				2669C35F22FC785500015732 /* code */,
 				2669C35522FC70B000015732 /* mnemonic */,
@@ -147,11 +139,19 @@
 		2669C35F22FC785500015732 /* code */ = {
 			isa = PBXGroup;
 			children = (
-				263477E32305B51C00AB4A5F /* HKDFKit */,
 				2669C36022FC785500015732 /* sha256.h */,
 				2669C36122FC785500015732 /* sha256.c */,
 			);
 			path = code;
+			sourceTree = "<group>";
+		};
+		A4086D652340DE2500E1A0CE /* rustlib */ = {
+			isa = PBXGroup;
+			children = (
+				A4086D662340DE2500E1A0CE /* libapp.a */,
+				A4086D672340DE2500E1A0CE /* libHeader.h */,
+			);
+			path = rustlib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +216,6 @@
 				263477DE2305B3DE00AB4A5F /* IBLSeed.m in Sources */,
 				260F7C4123158B6E00B88C23 /* PBKDF2Result.m in Sources */,
 				260F7C4023158B6E00B88C23 /* PBKDF2Defaults.m in Sources */,
-				263477E62305B51C00AB4A5F /* HKDFKit.m in Sources */,
 				2669C36222FC785500015732 /* sha256.c in Sources */,
 				2669C35E22FC72C000015732 /* Mnemonic.m in Sources */,
 			);
@@ -341,6 +340,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SND9369ME;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LibraUnWraps/rustlib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -350,6 +353,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SND9369ME;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LibraUnWraps/rustlib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

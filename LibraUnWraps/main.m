@@ -15,14 +15,14 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        Mnemonic *me = [[Mnemonic alloc] init];
-        NSString*  mm = [me generated];
-        NSLog(@"the Mnemonic is %@",mm);
+//        Mnemonic *me = [[Mnemonic alloc] init];
+//        NSString*  mm = [me generated];
+//        NSLog(@"the Mnemonic is %@",mm);
         
-        IBLSeed *sed = [[IBLSeed alloc] initWithMnemonic:me andSalt:LibraSalt];
+        IBLSeed *sed = [[IBLSeed alloc] initWithMnemonic:@"" andSalt:LibraSalt];
         [sed extract];
-        KeyFactory *keyfact = [[KeyFactory alloc] init];
-        [keyfact gen];
+//        KeyFactory *keyfact = [[KeyFactory alloc] init];
+//        [keyfact gen];
     }
     return 0;
 }

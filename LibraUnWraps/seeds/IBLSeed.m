@@ -9,15 +9,18 @@
 #import "IBLSeed.h"
 #import "Mnemonic.h"
 #import "KeyFactory.h"
-#import "HKDFKit.h"
 #import "PBKDF2Configuration.h"
 #import "PBKDF2Result.h"
+
+#import "libHeader.h";
 
 @interface IBLSeed()
 
 @property (nonatomic, copy) NSString * salt;
 
 @property (nonatomic, strong) Mnemonic * mnemonic;
+
+@property (nonatomic, strong) NSData * seedData;
 
 @end
 
@@ -27,50 +30,21 @@
     if (self = [super init]) {
         self.mnemonic = mnemonic;
         self.salt = salt;
-        [self extract];
+//        [self extract];
     }
     return self;
 }
 
-- (void)extract {
-    char salt[] = "LIBRA";
-    
-    int presize = sizeof(libraSaltPrefix);//字符串末尾/o
-//    NSData * prefixData = [NSData dataWithBytesNoCopy:libraSaltPrefix length:presize -1];
-    
-    int saltsize = sizeof(salt);
-    int realLength = presize + saltsize - 2;
-    uint8 *a = malloc(realLength);
-    memset(a, 0, realLength);
-    memcpy(a, libraSaltPrefix, presize-1);
-    uint8 * temp = a + presize -1;
-    memcpy(temp, salt, saltsize-1);
-    NSData *saltData = [NSData dataWithBytesNoCopy:a length:realLength];
-    
-
-    [self printData:saltData useC:YES];
-    
-    NSString *mnemonicWord = [self.mnemonic mnemonicWord];
-//    NSData * mnemonicData = [NSData dataWithBytesNoCopy:[mnemonicWord UTF8String] length:mnemonicWord.length];
-    
-//    NSData *extractData = [HKDFKit extract:mnemonicData salt:saltData];
-//    NSData *extractData2 = [HKDFKit extract:mnemonicData salt:saltData];
-    
-  PBKDF2Configuration *config = [[PBKDF2Configuration alloc] initWithSalt:saltData
-                             derivedKeyLength:32
-                                       rounds:2048
-                         pseudoRandomFunction:PBKDF2PseudoRandomFunctionSHA256];
-  PBKDF2Result *result = [[PBKDF2Result alloc] initWithPassword:mnemonicWord configuration:config];
-  NSData *masterKey = result.derivedKey;
-    
-   NSData * infoData = [self infoDataAtIndex:0];
-    
-   NSData *primarikey = [HKDFKit expand:masterKey info:infoData outputSize:32 offset:0];
- [self printData:primarikey useC:NO];
-    NSString *str = [[NSString alloc] initWithData:primarikey encoding:0];
-    
-    NSLog(@"str is %@",str);
-    
+- (NSData *)extract {
+    char *salt = "libra";
+    //固定助记词 方便对照调试
+    char * mne = "legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth useful legal will";
+    struct RustBuffer *rb =  seed_from_m_s(mne, salt);
+    [self printDes:rb->data withLen:rb->len withRow:8];
+    NSData *data = [NSData dataWithBytes:rb->data length:rb->len];
+    self.seedData = data;
+    [self printData:data useC:false];
+    return data;
 //    return extractData;
 }
 
@@ -114,7 +88,7 @@
         if (index > len) {
             break;
         }
-        printf("_%c_",*itr);
+        printf("_%u_",*itr);
         itr ++;
     }
     printf("\n");
