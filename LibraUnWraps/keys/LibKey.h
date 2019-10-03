@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LibKey : NSObject
 
-@property (nonatomic, assign) uint64 index;
-
 @property (nonatomic, strong) NSData * keyData;
 
-- (instancetype)initWithData:(NSData *)keyData index:(uint64)index;
+- (instancetype)initWithData:(NSData *)keyData;
 
-- (NSData *)getPub;
+-(NSString *)HexString;
+
+- (LibKey*)getPub;
 
 @end
 

@@ -22,6 +22,9 @@ int main(int argc, const char * argv[]) {
 //        IBLSeed *sed = [[IBLSeed alloc] initWithMnemonic:@"" andSalt:LibraSalt];
 //        [sed extract];
         KeyFactory *keyfact = [[KeyFactory alloc] init];
+        LibraAccount *acc = [keyfact createAccount];
+        [acc gen];//生成公私钥
+        NSLog(@"公钥是:%@,地址h是 %@",[[acc pubKey] HexString],[[acc accountKey] HexString]);
         
     }
     return 0;

@@ -8,9 +8,12 @@
 
 #import "KeyFactory.h"
 #import "LibKey.h"
+#import "LibraPrivateKey.h"
 
 #import "IBLSeed.h"
 #import "libHeader.h"
+#import "LibraAccount.h"
+
 #define LibraSalt @"LIBRA"
 
 @interface KeyFactory()
@@ -19,7 +22,11 @@
 
 @property (nonatomic, strong) NSData * masterData;
 
-@property (nonatomic, strong) LibKey * privateKey;
+@property (nonatomic, strong) LibraPrivateKey * privateKey;
+
+@property (nonatomic, assign) int64_t accountIndex;
+
+@property (nonatomic, strong) NSMutableDictionary * Accounts;
 
 @end
 
@@ -51,46 +58,16 @@
     NSData *data = [[NSData alloc] initWithBytesNoCopy:masterlen length:len];
     self.masterData = data;
     
-    [self getPrivate];
+   
 }
 
-- (void)getPrivate {
-    uint8 * masterkey = [self.masterData bytes];
-    int64_t index = 0;
-    uint32 resultLen = 0;
-    uint8 * privateKey =  rust_hkdf_privateKey(masterkey, self.masterData.length, index,&resultLen);
-    LibKey *key = [[LibKey alloc] initWithData:[[NSData alloc] initWithBytesNoCopy:privateKey length:resultLen] index:index];
-    self.privateKey = key;
- 
-    NSData *pubdata = [key getPub];
-    uint8 *bytes = [pubdata bytes];
-    [self printDes:bytes withLen:[pubdata length] withRow:8];
-    
-    uint8 *b = getAccountAddr(bytes, 32, &resultLen);
+- (LibraAccount *)createAccount {
 
-    NSData *data = [[NSData alloc] initWithBytesNoCopy:b length:resultLen];
-
-    NSString *hex = [self HexStringWithData:data];
-    NSLog(@"the hex is %@",hex);
-
-    
+    LibraAccount *account = [LibraAccount accountFromMaterData:self.masterData andIndex:self.accountIndex];
+    self.accountIndex ++;
+    return account;
 }
 
--(NSString *)HexStringWithData:(NSData *)data{
-    Byte *bytes = (Byte *)[data bytes];
-    NSString *hexStr=@"";
-    for(int i=0;i<[data length];i++) {
-        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
-        if([newHexStr length]==1){
-            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
-        }
-        else{
-            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
-        }
-    }
-    hexStr = [hexStr uppercaseString];
-    return hexStr;
-}
 
 
 - (void)gen {

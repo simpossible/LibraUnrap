@@ -17,6 +17,8 @@
 		2669C36222FC785500015732 /* sha256.c in Sources */ = {isa = PBXBuildFile; fileRef = 2669C36122FC785500015732 /* sha256.c */; };
 		A4086D682340DE2500E1A0CE /* libapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4086D662340DE2500E1A0CE /* libapp.a */; };
 		A41565A823444D050073AA86 /* LibKey.m in Sources */ = {isa = PBXBuildFile; fileRef = A41565A723444D050073AA86 /* LibKey.m */; };
+		A41565AB2345DCD00073AA86 /* LibraPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = A41565AA2345DCD00073AA86 /* LibraPrivateKey.m */; };
+		A41565AE2345DF5A0073AA86 /* LibraAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = A41565AD2345DF5A0073AA86 /* LibraAccount.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,10 @@
 		A4086D672340DE2500E1A0CE /* libHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libHeader.h; sourceTree = "<group>"; };
 		A41565A623444D050073AA86 /* LibKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibKey.h; sourceTree = "<group>"; };
 		A41565A723444D050073AA86 /* LibKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibKey.m; sourceTree = "<group>"; };
+		A41565A92345DCD00073AA86 /* LibraPrivateKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraPrivateKey.h; sourceTree = "<group>"; };
+		A41565AA2345DCD00073AA86 /* LibraPrivateKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraPrivateKey.m; sourceTree = "<group>"; };
+		A41565AC2345DF5A0073AA86 /* LibraAccount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraAccount.h; sourceTree = "<group>"; };
+		A41565AD2345DF5A0073AA86 /* LibraAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraAccount.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,10 @@
 				263477E12305B3EB00AB4A5F /* KeyFactory.m */,
 				A41565A623444D050073AA86 /* LibKey.h */,
 				A41565A723444D050073AA86 /* LibKey.m */,
+				A41565A92345DCD00073AA86 /* LibraPrivateKey.h */,
+				A41565AA2345DCD00073AA86 /* LibraPrivateKey.m */,
+				A41565AC2345DF5A0073AA86 /* LibraAccount.h */,
+				A41565AD2345DF5A0073AA86 /* LibraAccount.m */,
 			);
 			path = keys;
 			sourceTree = "<group>";
@@ -216,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A41565A823444D050073AA86 /* LibKey.m in Sources */,
+				A41565AE2345DF5A0073AA86 /* LibraAccount.m in Sources */,
 				263477E22305B3EB00AB4A5F /* KeyFactory.m in Sources */,
 				260F7C3F23158B6E00B88C23 /* PBKDF2Configuration.m in Sources */,
 				2669C34F22FC707E00015732 /* main.m in Sources */,
@@ -223,6 +234,7 @@
 				260F7C4123158B6E00B88C23 /* PBKDF2Result.m in Sources */,
 				260F7C4023158B6E00B88C23 /* PBKDF2Defaults.m in Sources */,
 				2669C36222FC785500015732 /* sha256.c in Sources */,
+				A41565AB2345DCD00073AA86 /* LibraPrivateKey.m in Sources */,
 				2669C35E22FC72C000015732 /* Mnemonic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

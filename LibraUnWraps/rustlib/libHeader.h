@@ -31,7 +31,7 @@ uint8 * rust_hkdf_privateKey(uint8 *masterData,uint32 masterLen, uint64 index,ui
 
 uint8 * pubkey_from_private(uint8 *privateData,uint32 privateLen,uint8 *resultLen);
 
-uint8 * getAccountAddr(uint8 *pubData,uint32 pubLen,uint8 *resultLen);
+uint8 * getAccountAddr(uint8 *pubData,uint32 pubLen,uint32 *resultLen);
 
 //pub extern fn getAccountAddr(pubData_ptr:*const u8,pubLen:usize,resultLen_ptr:&mut u8)-> * mut u8
 

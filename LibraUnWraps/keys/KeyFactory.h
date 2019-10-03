@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LibraAccount.h"
+#import "LibKey.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,8 +19,8 @@ static char libraInfoProfix[] = "LIBRA WALLET: derived key$";
 
 @interface KeyFactory : NSObject
 
+- (LibraAccount *)createAccount;
 
-- (void)gen;
 
 @end
 
