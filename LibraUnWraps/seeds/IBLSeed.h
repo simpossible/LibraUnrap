@@ -13,6 +13,8 @@
 
 @interface IBLSeed : NSObject
 
+@property (nonatomic, strong, readonly) NSData * seedData;;
+
 - (instancetype)initWithMnemonic:(Mnemonic *)mnemonic andSalt:(NSString *)salt;
 
 - (NSData *)extract;

@@ -17,6 +17,7 @@ static char libraInfoProfix[] = "LIBRA WALLET: derived key$";
 
 @interface KeyFactory : NSObject
 
+
 - (void)gen;
 
 @end

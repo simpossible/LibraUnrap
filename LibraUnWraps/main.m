@@ -11,7 +11,7 @@
 #import "KeyFactory.h"
 #import "IBLSeed.h"
 
-#define LibraSalt @"LIBRA"
+
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -19,10 +19,10 @@ int main(int argc, const char * argv[]) {
 //        NSString*  mm = [me generated];
 //        NSLog(@"the Mnemonic is %@",mm);
         
-        IBLSeed *sed = [[IBLSeed alloc] initWithMnemonic:@"" andSalt:LibraSalt];
-        [sed extract];
-//        KeyFactory *keyfact = [[KeyFactory alloc] init];
-//        [keyfact gen];
+//        IBLSeed *sed = [[IBLSeed alloc] initWithMnemonic:@"" andSalt:LibraSalt];
+//        [sed extract];
+        KeyFactory *keyfact = [[KeyFactory alloc] init];
+        
     }
     return 0;
 }
